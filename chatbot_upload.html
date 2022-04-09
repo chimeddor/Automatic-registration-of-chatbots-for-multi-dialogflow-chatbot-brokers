@@ -1,0 +1,128 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/yeti/bootstrap.min.css" integrity="sha384-mLBxp+1RMvmQmXOjBzRjqqr0dP9VHU2tb3FK6VB0fJN/AOu7/y+CAeYeWJZ4b3ii" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/css/bootstrap.min.css" >
+         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+         <script type="application/javascript">
+             $(document).ready(function(){
+                 $('#VideoId').val("{{video.video_name}}");
+                 $('#num').val("{{video.subject_id}}");
+                 $('#cname').val("{{video.video_title}}");
+             });
+             
+         </script>
+    
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div>
+     <img src="{% static 'moocacha/img/konkukU.jpg' %}" alt="" style="width: 30%; height:30%;margin-right: 1pt"  align="left">
+    </div>
+<!--                <a class="navbar-brand" href="/">MOOCACHA - Massive Open Online Courses Assistent Chatbot</a>-->
+                <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                     <li class="nav-item">
+                          <a class="nav-link" href="#navbarResponsive">홈</a>
+                      </li>
+                    <li class="nav-item">
+                          <a class="nav-link" href="#online_kanii">강의</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/signin">연락처</a>
+                      </li>
+                       <li class="nav-item">
+                          <a class="nav-link" href="/signin">도움</a>
+                      </li>
+					    <li class="nav-item">
+				
+                        <a class="nav-link"  onclick="location.href='/logout'" style="cursor:pointer;" data-toggle="modal" data-target=".bs-modal-sm">로그아웃</a>
+<!--                           <a class="nav-link" href="/signup">Sign Up</a>
+ -->               
+						</li>
+                </ul>
+                </div>
+                <div>
+            </div>  
+        </nav>
+
+        <div class="container">
+        <form  action = "/chatbot" method="post" enctype="multipart/form-data">
+            <fieldset>
+              {% csrf_token %}
+              {{ data }}
+              <div class="title"><h3>Upload Chatbot</h3></div>
+             
+              <div class="form-group">
+                <label for="uuid">Video Name</label>
+<!--                 <input type="text" class="form-control" name="uuid" id="uuid" >
+	-->       
+		   <select class="form-control"  name="video_name" id="VideoId">
+	                {% for s_video in videos%}
+	            	<option value="{{s_video.id}}">{{s_video.video_title}}</option>
+	                {% endfor %}
+	            </select>
+              </div>
+              <br/>
+              <div class="form-group">
+                <label for="num">Subject number</label>
+                <select class="form-control" name="subject_number" id="SubjectId">
+                {% for s_number in videos%}
+                <option value=""></option>
+                <option  value="{{s_number.subject_id}}">{{s_number.subject_id}}</option>
+                {%endfor%}
+                </select>
+                <!-- <input type="text" class="form-control" name="subject_number" id="num" > -->
+              </div>
+		<br>
+	      <div class="form-group">
+		<label for="chatbot_ip">Chatbot IP</label>
+		<input type="text" name="chatbot_ip" class="form-control" placeholder="chatbot ip">
+	      </div>
+          <br>
+        <div class="form-group">
+	      <label for="chatbot_port">Chatbot Port</label>
+		<input type="text" name="chatbot_port" class="form-control" placeholder="chatbot port">
+	      </div>
+		<br>
+	         <div class="form-group">
+                  <label for="chatbot_name">Chatbot's Name</label>
+                  <input type="text" class="form-control" placeholder="ex: chatbot" name="chatbot_name" id = "ChatbotName">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="chatbot">Chatbot(type(zip))</label>
+             	<input type="file" class="form-control" id="formFile"name="docfile" id="Chatbot" >
+              </div>
+              <br/>         
+              <input  type="submit" name="submit" class="btn btn-primary" value="업로드"></input>
+            </fieldset>
+          </form>
+ 
+        </div>
+    </body>
+</html>
+<style>
+
+.container{
+    margin-top:100px;
+}
+.title{
+    margin-left:200px;
+}
+.form-group{
+    margin:auto;
+    margin-left:200px;
+}
+.form-control{
+    width:500px;
+}
+.btn-primary{
+    margin:auto;
+    margin-top:10px;
+    margin-left:400px;
+}
+</style>
