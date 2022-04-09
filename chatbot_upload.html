@@ -12,14 +12,12 @@
              });
              
          </script>
-    
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div>
      <img src="{% static 'moocacha/img/konkukU.jpg' %}" alt="" style="width: 30%; height:30%;margin-right: 1pt"  align="left">
     </div>
-<!--                <a class="navbar-brand" href="/">MOOCACHA - Massive Open Online Courses Assistent Chatbot</a>-->
                 <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -37,18 +35,14 @@
                        <li class="nav-item">
                           <a class="nav-link" href="/signin">도움</a>
                       </li>
-					    <li class="nav-item">
-				
-                        <a class="nav-link"  onclick="location.href='/logout'" style="cursor:pointer;" data-toggle="modal" data-target=".bs-modal-sm">로그아웃</a>
-<!--                           <a class="nav-link" href="/signup">Sign Up</a>
- -->               
-						</li>
+		      <li class="nav-item">	
+                        <a class="nav-link"  onclick="location.href='/logout'" style="cursor:pointer;" data-toggle="modal" data-target=".bs-modal-sm">로그아웃</a>               
+		      </li>
                 </ul>
                 </div>
                 <div>
             </div>  
         </nav>
-
         <div class="container">
         <form  action = "/chatbot" method="post" enctype="multipart/form-data">
             <fieldset>
