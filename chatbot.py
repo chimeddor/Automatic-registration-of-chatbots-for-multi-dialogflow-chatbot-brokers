@@ -7,14 +7,14 @@ from _thread import *
 
 import argparse
 import uuid
-#cloudbot1-heyr-a31c56e3de84.json
-os.environ['GOOGLE_APPLICATION_CREDENTIALS']=' '
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']=   <' '>
 
 from google.protobuf.json_format import MessageToJson
 b = list()
 ServerSideSocket = socket.socket()
-host = ' '
-port = 
+host = 'IP'
+port = <PORT>
 ThreadCount = 0
 language = 'ko'
 try:
@@ -30,26 +30,20 @@ def multi_threaded_client(connection):
     while True:
         text = connection.recv(2048)
         language_code = 'ko'
-        print('text----------->',text)
         """Returns the result of detect intent with texts as inputs.
         Using the same `session_id` between requests allows continuation
         of the conversation."""
-        project_id=" "
-        # project_id="dorj-dialogflow-ccmt"
+        project_id= "PROJECT_ID"
         session_id="session01"
-        #session_id="projects/acquired-ripple-285306/agent/sessions/22976af6-873e-2f74-ac90-bdbbcfbe6815"
         language_code=language
-        
         session_client = dialogflow.SessionsClient()
         session = session_client.session_path(project_id, session_id)
         intentdict={'definition':"정의", 'cons':"단점",'contrast':"차이점",'example':"예시",'pros':"장점",'feature':"특징",'Default Fallback Intent':"기타"}
         print('Session path: {}\n'.format(session))
         text_input = dialogflow.types.TextInput(text=text, language_code=language_code)
         query_input = dialogflow.types.QueryInput(text=text_input)
-        print('query_input-----------<',query_input)
         response = session_client.detect_intent(
             session=session, query_input=query_input)
-        
         res=MessageToJson(response)
         res=json.loads(res)
         print(res)
@@ -72,7 +66,7 @@ def multi_threaded_client(connection):
                 if port == value:
                     my_name_ = key
         for i in b:
-            d = my_name_+'번 챗봇 '+uploaded_name+': '+i
+            d = my_name_ + '번 챗봇 ' + uploaded_name + ': ' + i
         connection.sendall(str.encode(d))
         connection.close()
         
