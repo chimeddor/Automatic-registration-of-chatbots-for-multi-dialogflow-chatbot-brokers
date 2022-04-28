@@ -32,10 +32,7 @@ class Chatbot():
                         ports = ip
             ClientMultiSocket = socket.socket()
             host = hosts
-            print('host-------------->',host)
             port = int(ports)
-            print('port--------------->',port)
-            # port = random.choice(lis)
             print('Waiting for connection response')
             check_path = os.path.isfile('save_port.json')
             if check_path:
@@ -50,7 +47,6 @@ class Chatbot():
             try:
                 ClientMultiSocket.connect((host, port))
                 host, port = ClientMultiSocket.getpeername()
-                print('연결---------->',port)
                 with open('save_port.json', 'w') as outfile:
                     if port not in d.values():
                         if len(d) == 0:
